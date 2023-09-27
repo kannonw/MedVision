@@ -1,7 +1,7 @@
 from .UniversalClassifier.Model import UniversalClassifier
 from .BrainTumorClassifier.Model import BrainTumorClassifier
 from .KneeXRayClassifier.Model import KneeXRayClassifier
-from .LiverClassifier.Model import LiverClassifier
+# from .LiverClassifier.Model import LiverClassifier
 from .EyeClassifier.Model import EyeClassifier
 
 import torch.nn.functional as F
@@ -16,8 +16,8 @@ brainMRIModel.load_weights()
 
 kneeXRModel = KneeXRayClassifier()
 
-liverMRIModel = LiverClassifier().eval()
-liverMRIModel.load_weights()
+# liverMRIModel = LiverClassifier().eval()
+# liverMRIModel.load_weights()
 
 eyeModel = EyeClassifier().eval()
 eyeModel.load_weights()
@@ -59,12 +59,12 @@ def PredictDisease(img, index):
     #     return ModelLogic(model=kneeMRIModel, img=img)
     elif index == 5:
         return BinaryModelLogic(model=kneeXRModel, img=img)
-    elif index == 6:
-        return ModelLogic(model=liverMRIModel, img=img)
+    # elif index == 6:
+        # return ModelLogic(model=liverMRIModel, img=img)
     elif index == 7:
         return ModelLogic(model=eyeModel, img=img)
     else:
-        return ModelLogic(model=liverMRIModel, img=img)
+        return ModelLogic(model=brainMRIModel, img=img)
     
     	
 def ModelLogic(model, img):
