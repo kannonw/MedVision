@@ -64,6 +64,16 @@
             {{ form.image }}
             <input type="submit" value="Enviar">
         </form>
+
+
+        {% with msg = get_flashed_messages() %}
+            {% if msg %}
+                <img src="data:image/png;base64,{{msg[0]}}" alt="">
+                <p>{{ msg[1] }}</p>
+            {% endif %}
+        {% endwith %}
+
+
     
         {% if classifications != undefined %}
         <section id="previous-classifications">
