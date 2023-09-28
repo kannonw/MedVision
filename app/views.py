@@ -60,10 +60,20 @@ def redirect_model():
 def classification_api():
     uploaded_file = request.files.get('uploaded_file')
     if uploaded_file:
-        file_data = uploaded_file.read() 
+        file_data = uploaded_file.read()
         class_name, class_index = PredictImageType(file_data)
-        resultado = PredictDisease(file_data, class_index)
-        return {"message": resultado[0][0]}
+        if (class_name != 'Non medical image'):
+            if (class_name == "Knee XR"):
+                pass
+            resultado = PredictDisease(file_data, class_index)
+            return {
+                "tipoImagem": class_name,
+                "doenca": resultado[0][0]
+            }
+        else:
+            return {
+                "tipoImagem": class_name,
+            }
 
 
 @current_app.errorhandler(404) 
