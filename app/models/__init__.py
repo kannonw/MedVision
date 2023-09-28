@@ -1,6 +1,6 @@
 from .UniversalClassifier.Model import UniversalClassifier
 from .BrainTumorClassifier.Model import BrainTumorClassifier
-from .KneeXRayClassifier.Model import KneeXRayClassifier
+# from .KneeXRayClassifier.Model import KneeXRayClassifier
 # from .LiverClassifier.Model import LiverClassifier
 from .EyeClassifier.Model import EyeClassifier
 
@@ -14,7 +14,7 @@ universalClassifier.load_weights()
 brainMRIModel = BrainTumorClassifier().eval()
 brainMRIModel.load_weights()
 
-kneeXRModel = KneeXRayClassifier()
+# kneeXRModel = KneeXRayClassifier()
 
 # liverMRIModel = LiverClassifier().eval()
 # liverMRIModel.load_weights()
@@ -57,14 +57,16 @@ def PredictDisease(img, index):
     #     return ModelLogic(model=chestXRModel, img=img)
     # elif index == 4:
     #     return ModelLogic(model=kneeMRIModel, img=img)
-    elif index == 5:
-        return BinaryModelLogic(model=kneeXRModel, img=img)
+    # elif index == 5:
+    #     return BinaryModelLogic(model=kneeXRModel, img=img)
     # elif index == 6:
         # return ModelLogic(model=liverMRIModel, img=img)
     elif index == 7:
         return ModelLogic(model=eyeModel, img=img)
-    else:
+    elif index == 8:
         return ModelLogic(model=brainMRIModel, img=img)
+    else: 
+        return False
     
     	
 def ModelLogic(model, img):
