@@ -16,12 +16,12 @@ def clear_session(*args):
     session.clear()
  
 
-@main.route('/', methods=['GET'])
+@main.route('/sobre', methods=['GET'])
 def home():
-    return render_template('PaginaInicial.html')
+    return render_template('PaginaSobre.html')
 
 
-@main.route('/dashboard', methods=['GET'])
+@main.route('/', methods=['GET'])
 def dashboard():
     form = ImageForm()
 
@@ -56,17 +56,14 @@ def redirect_model():
     return redirect(url_for('main.dashboard'))
 
 
-# @main.route("/classification-app", methods=['GET','POST'])
-# def classification_api():
-#     session['class_name'], session['class_index'] = PredictImageType(request.files['image'])
-#     pred_dict = PredictDisease(session['image'], session['class_index'])
-#     new_classification = Classifications(
-#         user_id=current_user.id,
-#         image=b64encode(session['image']).decode('utf-8'),
-#         class_name=session['class_name'],
-#         prediction=pred_dict,
-#     )
-#     return {"message": new_classification}
+@main.route("/classificationApp", methods=['GET','POST'])
+def classification_api():
+    uploaded_file = request.files.get('uploaded_file')
+    if uploaded_file:
+        file_data = uploaded_file.read() 
+        class_name, class_index = PredictImageType(file_data)
+        resultado = PredictDisease(file_data, class_index)
+        return {"message": resultado[0][0]}
 
 
 @current_app.errorhandler(404) 
