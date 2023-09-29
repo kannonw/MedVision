@@ -73,7 +73,7 @@ def ModelLogic(model, img):
     results = np.array([[i, p] for i, p in enumerate(pred*100)])
     results = results[results[:, 1].argsort()][::-1]
 
-    dic = {i:[model.class_names[int(x)], f'{y:.2f}'] for i, (x, y) in enumerate(results.tolist())}
+    dic = {str(i):[model.class_names[int(x)], f'{y:.2f}'] for i, (x, y) in enumerate(results.tolist())}
 
     return dic
 
@@ -86,6 +86,6 @@ def BinaryModelLogic(model, img):
     sorted_pred_array = pred_array[pred_array[:, 1].argsort()][::-1]
     
 
-    dic = {i:[model.class_names[int(x)], f'{y:.2f}'] for i, (x, y) in enumerate(sorted_pred_array.tolist())}
+    dic = {str(i):[model.class_names[int(x)], f'{y:.2f}'] for i, (x, y) in enumerate(sorted_pred_array.tolist())}
 
     return dic
