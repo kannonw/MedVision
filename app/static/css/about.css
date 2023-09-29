@@ -115,11 +115,11 @@ section {
     }
 
     section {
-        width: 100%;
+        width: 90%;
+        margin: auto;
     }
 
     .alunos {
         grid-template-columns: repeat(2, auto);
     }
-
 }
