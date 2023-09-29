@@ -50,7 +50,7 @@ class UniversalClassifier(nn.Module):
         )
 
 
-    def load_weights(self, path="./app/models/UniversalClassifier/best.pth.tar"):
+    def load_weights(self, path="./app/models/UniversalClassifier/proto_5.pth.tar"):
         self.load_state_dict(load(path, map_location='cpu')["state_dict"])
 
 
