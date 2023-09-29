@@ -56,7 +56,7 @@ def redirect_model():
         response = requests.post(api_url, files=files)
         
         if response.status_code == 200:
-            pred_dict = response.json()['doenca']
+            pred_dict = response.json()
 
     elif (session['class_index'] == 4):
         api_url = "https://knee-medvision-85e204f5fcab.herokuapp.com/kneeRXClassifier"
@@ -66,7 +66,7 @@ def redirect_model():
         response = requests.post(api_url, files=files)
         
         if response.status_code == 200:
-            pred_dict = response.json()['doenca']
+            pred_dict = response.json()
     else:
         pred_dict = PredictDisease(session['image'], session['class_index'])
 
