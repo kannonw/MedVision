@@ -39,7 +39,6 @@
             <input type="submit" value="Enviar">
         </form>
 
-
         {% with msg = get_flashed_messages() %}
             {% if msg %}
                 <div class="labels-container">
@@ -75,7 +74,7 @@
 
                 <div>
                     <button type="submit" class="modal-confirm-btn">Sim</button>
-                    <button type="button" class="modal-close-btn">Não</button>
+                    <button type="button" id="confirmCloseBtn" class="modal-close-btn">Não</button>
                 </div>
             </div>
         </form>
@@ -90,7 +89,40 @@
                 <img src="" alt="">
 
                 <div>
-                    <button type="button" class="modal-close-btn">Voltar</button>
+                    <button hx-post="/clear-session" type="button" class="modal-close-btn error-modal-close-btn">Voltar</button>
+                </div>
+            </div>
+        </form>
+
+        <form action="/redirect-to-model" id="manualRedirect" class="modal" method="POST">
+            <div class="modal-card">    
+                <h2>Escolha o modelo</h2>
+                <div class="box">
+                    <span>Ressonância Magnética do Cérebro</span>
+                    <button type="submit" name="index" value="1" class="modal-confirm-btn">Escolher</button>
+                </div>
+                <div class="box">
+                    <span>Raio-X do Pulmão</span>
+                    <button type="submit" name="index" value="3" class="modal-confirm-btn">Escolher</button>
+                </div>
+                <div class="box">
+                    <span>Ressonância Magnética do Joelho</span>
+                    <button type="submit" name="index" value="4" class="modal-confirm-btn">Escolher</button>
+                </div>
+                <div class="box">
+                    <span>Raio-X do Joelho</span>
+                    <button type="submit" name="index" value="5" class="modal-confirm-btn">Escolher</button>
+                </div>
+                <div class="box">
+                    <span>Ressonância Magnética do Fígado</span>
+                    <button type="submit" name="index" value="6" class="modal-confirm-btn">Escolher</button>
+                </div>
+                <div class="box">
+                    <span>Oftalmoscopia</span>
+                    <button type="submit" name="index" value="7" class="modal-confirm-btn">Escolher</button>
+                </div>
+                <div>
+                    <button hx-post="/clear-session" type="button" class="modal-close-btn error-modal-close-btn">Voltar</button>
                 </div>
             </div>
         </form>

@@ -10,12 +10,18 @@ $(document).ready(function() {
         document.getElementById('errorModal').style.display = 'flex';
     } 
 
-    $('.modal-close-btn').on('click', function() {
+    $('#confirmCloseBtn').on('click', function() {
+        $('.modal').hide();
+        $('#manualRedirect').show();
+    });
+
+    $('.error-modal-close-btn').on('click', function() {
         $('#file-form')[0].reset()
         $('.modal').hide();
     });
 
     $('.modal-confirm-btn').on('click', function() {
+        $('#file-form')[0].reset()
         $('.modal').hide();      
     });
 
@@ -47,5 +53,4 @@ $(document).ready(function() {
         
         e.preventDefault();
     })
-
 });
