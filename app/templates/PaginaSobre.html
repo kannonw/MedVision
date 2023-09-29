@@ -12,59 +12,96 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{url_for('static', filename='js/dashboard.js')}}"></script>
     <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/about.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <title>Dashboard</title>
+    <title>Sobre</title>
 </head>
 <body>
     <header>
-        <h1>MedVision</h1>
-        <div class="opcoes">
-            <a href="/login">Fazer Login</a>
-            <a href="/register" id="registrarPage">Registrar</a>
+        <div class="logo">
+            <img src="../static/icons/favicon/android-chrome-512x512.png" alt="">
+            <h1>MedVision</h1>
         </div>
-    </header>
-    <main id="main-content">
-        <span>Seja bem-vindo, este é um projeto de pesquisa desenvolvido por alunos do 
-            Instituto Federal do Triângulo Mineiro - Campus Ituiutaba.</span>
-        <h3>Classificador Geral</h3>
-        <span>Este é um classificador que identifica se uma imagem é médica ou não, também identifica o tipo da imagem e a doença relacionada.</span>
-        <ul id="listaDoencas">
-            <li><h3>Imagens que podem ser classificadas</h3></li>
-            <li>Blood</li>
-            <li>Ressonância Magnética do Cérebro</li>
-            <li>Tomografia do Pulmão</li>
-            <li>Raio-X do Pulmão</li>
-            <li>Ressonância Magnética do Joelho</li>
-            <li>Raio-X do Joelho</li>
-            <li>Ressonância Magnética do Fígado</li>
-            <li>Oftalmoscopia</li>
-        </ul>
-        <h3>Alunos Participantes</h3>
 
-        <ul class="alunos">
-            <li class="cardPart">
-                <img src="../static/images/participantes/bruno_gomes.jpg" alt="Imagem do Aluno Bruno Gomes" class="imagemAluno">
-                <span>Bruno Gomes</span>
-            </li>
-            <li class="cardPart">
-                <img src="../static/images/participantes/.jpg" alt="Imagem do Aluno João Pedro Araújo" class="imagemAluno">
-                <span>João Pedro Araújo</span>
-            </li>
-            <li class="cardPart">
-                <img src="../static/images/participantes/.jpg" alt="Imagem do Aluno Matheus" class="imagemAluno">
-                <span>Matheus</span>
-            </li>
-            <li class="cardPart">
-                <img src="../static/images/participantes/.jpg" alt="Imagem do Aluno Pedro" class="imagemAluno">
-                <span>Pedro</span>
-            </li>
-            <li class="cardPart">
-                <img src="../static/images/participantes/.jpg" alt="Imagem do Aluno Gabriel" class="imagemAluno">
-                <span>Gabriel</span>
-            </li>
-        </ul>
+        <nav class="parent-links">
+            <a href="/sobre" class="actual-page">Sobre</a>
+            <a href="/" class="dashboard-link">Dashboard</a>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <h1>Sobre o Projeto MedVision</h1>
+
+        <section>
+            <h2>Objetivo</h2>
+
+            <p>
+                O MedVision é uma iniciativa por uma equipe de pesquisadores do Instituto Federal do Triângulo Mineiro (IFTM) Campus Ituiutaba. O projeto tem como objetivo, o uso de ferramentas de Deep Learning e Inteligência Artificial para o diagnóstico precoce de infermidades em imagens médicas. Atualmente a aplicação consta com 5 modelos para análise de diferentes regiões do corpo, além de um modelo (Classificador Geral) com o próposito de redirecionar automaticamente à região do corpo recorrespondente de acordo com o tipo de imagem enviada pelo usuário.
+            </p>
+    
+        </section>
+        
+        <section>
+            <h2>Tipos de Imagens Atualmente Suportadas</h2>
+
+            <ul id="listaDoencas">
+                <li>Ressonância Magnética do Cérebro</li>
+                <li>Ressonância Magnética do Joelho</li>
+                <li>Ressonância Magnética do Fígado</li>
+                <li>Raio-X do Pulmão</li>
+                <li>Raio-X do Joelho</li>
+                <li>Oftalmoscopia</li>
+            </ul>
+    
+        </section>
+        
+        <section>
+            <h2>Classificador Geral</h2>
+        
+            <p>
+                O Classificador Geral é uso antes de passar a imagem ao modelo para a classificação da infermidade. Ele é o responsável por detectar o tipo de imagem (Raio-X do Pulmão, Oftalmoscopia...) e redirecionar a imagem para o respectivo modelo. Caso o usuário insira uma imagem que não condiga com algum dos modelos listados acima, o sistema retornará uma mensagem de erro. 
+            </p>
+        </section>
+
+        
+        <section class="equipe-container">
+            <h2>Equipe</h2>
+
+            <div class="alunos">
+                <a href="" class="cardPart" target="_blank">
+                    <img src="../static/images/participantes/.jpg" alt="Imagem do Orientador André Luiz" class="imagemAluno">
+                    <span>André Luiz</span>
+                </a>
+                <a href="" class="cardPart" target="_blank">
+                    <img src="../static/images/participantes/bruno_gomes.jpg" alt="Imagem do Aluno Bruno Gomes" class="imagemAluno">
+                    <span>Bruno Gomes</span>
+                </a>
+                <a href="" class="cardPart" target="_blank">
+                    <img src="../static/images/participantes/.jpg" alt="Imagem do Aluno João Pedro Araújo" class="imagemAluno">
+                    <span>João Pedro Araújo</span>
+                </a>
+                <a href="https://linktr.ee/mathi.tar" class="cardPart" target="_blank">
+                    <img src="../static/images/participantes/.jpg" alt="Imagem do Aluno Matheus" class="imagemAluno">
+                    <span>Matheus</span>
+                </a>
+                <a href="" class="cardPart" target="_blank">
+                    <img src="../static/images/participantes/.jpg" alt="Imagem do Aluno Pedro" class="imagemAluno">
+                    <span>Pedro Henrique</span>
+                </a>
+                <a href="" class="cardPart" target="_blank">
+                    <img src="../static/images/participantes/.jpg" alt="Imagem do Aluno Gabriel" class="imagemAluno">
+                    <span>Gabriel</span>
+                </a>
+            </div>
+        </section>        
     </main>
+
+    <footer>
+        <p>@ MedVision Team</p>
+    </footer>
+
     <button onclick="topFunction()" id="topo" title="Go to top">Voltar ao topo ⇮</button>
+
     <script>
         mybutton = document.getElementById("topo");
         window.onscroll = function() {scrollFunction()};

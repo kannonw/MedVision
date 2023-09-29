@@ -1,0 +1,114 @@
+:root {
+    --blue: #0B5ED7;
+    --hover-blue: #0f6cf8;
+    --border-white: #D2DDEC;
+}
+
+* {
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    font-size: 1.1rem;
+    max-width: 65rem;
+}
+
+main h1, 
+main h2, 
+main h3 {
+    font-size: 2rem;
+    margin-left: .4rem;
+    text-transform: none;
+}
+
+p {
+    line-height: 1.5;
+}
+
+section {
+    width: 70%;
+    margin-bottom: 4rem;
+}
+
+#listaDoencas {
+    list-style-position: inside;
+    line-height: 1.5;
+}
+
+.equipe-container {
+    width: auto;
+}
+
+.alunos {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    row-gap: 4rem;
+    margin-top: 4rem;
+    /* display: flex;
+    flex-direction: row; */
+}
+
+.cardPart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem 1rem;
+    text-align: center;
+    border-radius: .6rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: .2s ease-in-out;
+}
+
+.cardPart:hover {
+    background-color: #0f6cf818;
+    transition: .2s ease-in-out;
+}
+
+.cardPart img {
+    display: block;
+    object-fit: cover;
+    width: 12rem;
+    aspect-ratio: 1;
+    margin: 1.5rem auto;
+    border: .1rem solid var(--border-white);
+    border-radius: 50%;
+}
+
+/*
+.cardPart a {
+    display: block;
+    text-decoration: none;
+    color: black;
+    background-image: linear-gradient(var(--blue), var(--blue));
+    background-size: 0% 0.1em;
+    background-position-y: 100%;
+    background-position-x: 0%;
+    background-repeat: no-repeat;
+    transition: background-size 0.2s ease-in-out;
+    cursor: pointer; 
+}
+
+.cardPart a:hover,
+.cardPart a:focus,
+.cardPart a:active {
+    color: var(--blue);
+    background-size: 100% 0.1em;
+} */
+
+@media(max-width: 768px) {
+    html {
+        font-size: 80%;
+    }
+
+    section {
+        width: 100%;
+    }
+
+    .alunos {
+        grid-template-columns: repeat(2, auto);
+    }
+
+}
