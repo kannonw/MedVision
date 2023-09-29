@@ -1,4 +1,5 @@
 from flask import current_app, Blueprint, render_template, request, session, redirect, jsonify, url_for, flash
+import requests
 from .models import PredictImageType, PredictDisease
 from base64 import b64encode
 from .forms import ImageForm
@@ -45,8 +46,27 @@ def process_data():
 
 
 @main.route('/redirect-to-model', methods=['POST'])
-def redirect_model():    
-    pred_dict = PredictDisease(session['image'], session['class_index'])
+def redirect_model():
+    if (session['class_name'] == "Knee XR"):
+        api_url = "https://knee-medvision-85e204f5fcab.herokuapp.com/kneeRXClassifier"
+        
+        files = {'uploaded_file': ('image.jpg', session['image'])}  
+        
+        response = requests.post(api_url, files=files)
+        
+        if response.status_code == 200:
+            pred_dict = response.json()['doenca']
+    elif (session['class_name'] == "Knee MRI"):
+        api_url = "https://knee-medvision-85e204f5fcab.herokuapp.com/kneeRXClassifier"
+        
+        files = {'uploaded_file': ('image.jpg', session['image'])}  
+        
+        response = requests.post(api_url, files=files)
+        
+        if response.status_code == 200:
+            pred_dict = response.json()['doenca']
+    else:
+        pred_dict = PredictDisease(session['image'], session['class_index'])
 
     flash(b64encode(session['image']).decode('utf-8'))
     flash(pred_dict)
@@ -64,12 +84,47 @@ def classification_api():
         class_name, class_index = PredictImageType(file_data)
         if (class_name != 'Non medical image'):
             if (class_name == "Knee XR"):
-                pass
-            resultado = PredictDisease(file_data, class_index)
-            return {
-                "tipoImagem": class_name,
-                "doenca": resultado[0][0]
-            }
+                api_url = "https://knee-medvision-85e204f5fcab.herokuapp.com/kneeRXClassifier"
+                
+                files = {'uploaded_file': ('image.jpg', file_data)}  
+                
+                response = requests.post(api_url, files=files)
+                
+                if response.status_code == 200:
+                    resultado = response.json()['doenca']
+                    return {
+                        "tipoImagem": class_name,
+                        "doenca": resultado
+                    }
+                else:
+                    return {
+                        "tipoImagem": class_name,
+                        "error": "Falha ao enviar imagem para classificação"
+                    }
+            elif (class_name == "Knee MRI"):
+                api_url = "https://knee-medvision-85e204f5fcab.herokuapp.com/kneeMRIClassifier"
+                
+                files = {'uploaded_file': ('image.jpg', file_data)}  
+                
+                response = requests.post(api_url, files=files)
+                
+                if response.status_code == 200:
+                    resultado = response.json()['doenca']
+                    return {
+                        "tipoImagem": class_name,
+                        "doenca": resultado
+                    }
+                else:
+                    return {
+                        "tipoImagem": class_name,
+                        "error": "Falha ao enviar imagem para classificação"
+                    }
+            else:
+                resultado = PredictDisease(file_data, class_index)
+                return {
+                    "tipoImagem": class_name,
+                    "doenca": resultado[0][0]
+                }
         else:
             return {
                 "tipoImagem": class_name,

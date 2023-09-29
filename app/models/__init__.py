@@ -63,8 +63,6 @@ def PredictDisease(img, index):
         # return ModelLogic(model=liverMRIModel, img=img)
     elif index == 7:
         return ModelLogic(model=eyeModel, img=img)
-    else:
-        return ModelLogic(model=brainMRIModel, img=img)
     
     
     	
