@@ -133,15 +133,15 @@ def classification_api():
             }
 
 
-@main.route("/classification-app-tag", methods=['POST'])
+@main.route("/classification-app-tag", methods=['GET', 'POST'])
 def classification_api_tag():
     uploaded_file = request.files.get('uploaded_file')
-    classes = request.files.get('index_class')
+    class_index = request.form.get('class_index')
+    class_name = request.form.get('class_name')
 
     if uploaded_file:
         file_data = uploaded_file.read()
-        class_index, class_name = classes
-
+        class_index = int(class_index)
 
         if (class_index == 8):
             return { "tipoImagem": class_name }
