@@ -44,6 +44,7 @@ section {
 .alunos {
     display: grid;
     grid-template-columns: repeat(4, auto);
+    gap: 1rem;
     row-gap: 4rem;
     margin-top: 4rem;
     /* display: flex;
@@ -60,6 +61,9 @@ section {
     border-radius: .6rem;
     cursor: pointer;
     text-decoration: none;
+    border-radius: .6rem;
+    border: .1rem solid var(--border-white);
+    box-shadow: 0 6px 10px 1px rgba(0, 0, 0, 0.15);
     transition: .2s ease-in-out;
 }
 
@@ -121,5 +125,9 @@ section {
 
     .alunos {
         grid-template-columns: repeat(2, auto);
+    }
+
+    .cardPart img {
+        width: 10rem;
     }
 }
