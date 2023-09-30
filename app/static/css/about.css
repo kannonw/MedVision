@@ -63,7 +63,7 @@ section {
     text-decoration: none;
     border-radius: .6rem;
     border: .1rem solid var(--border-white);
-    box-shadow: 0 6px 10px 1px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 10px 1px rgba(0, 0, 0, 0.1);
     transition: .2s ease-in-out;
 }
 

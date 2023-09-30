@@ -132,7 +132,8 @@ form input[type=submit]:hover {
     border-radius: 1rem;
 }
 
-.modal .modal-card div h2 {
+.modal .modal-card h2 {
+    text-align: center;
     text-transform: none;
 }
 
@@ -175,7 +176,7 @@ div.modal-card button.modal-close-btn:hover {
 
 div.modal-card button.modal-confirm-btn {
     color: #0B5ED7;
-    width: 5rem;
+    width: 6rem;
     padding: .6rem;
 
     border: .1rem solid #0B5ED7;

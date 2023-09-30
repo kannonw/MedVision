@@ -10,19 +10,18 @@ $(document).ready(function() {
         document.getElementById('errorModal').style.display = 'flex';
     } 
 
-    $('#confirmCloseBtn').on('click', function() {
-        $('.modal').hide();
-        $('#manualRedirect').show();
-    });
-
-    $('.error-modal-close-btn').on('click', function() {
+    $('.modal-close-btn').on('click', function() {
         $('#file-form')[0].reset()
         $('.modal').hide();
-    });
+    });    
 
     $('.modal-confirm-btn').on('click', function() {
         $('#file-form')[0].reset()
         $('.modal').hide();      
+    });
+
+    $('.models-switch').on('click', function() {
+        $('#manualRedirect').show();
     });
 
     $('#file-form').submit(function (e) {
