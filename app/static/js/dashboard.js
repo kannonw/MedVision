@@ -37,7 +37,7 @@ $(document).ready(function() {
             cache: false,
             timeout: 10000,
             success: function (data) {
-                if (data.index == '8') {
+                if (data.index == '8' || data.index == '6' || data.index == '2' || data.index == '0') {
                     showErrorModal(data.image);
                 } else {
                     showConfirmModal(data.message, data.image);
