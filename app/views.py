@@ -133,6 +133,51 @@ def classification_api():
             }
 
 
+@main.route("/classification-app-tag", methods=['POST'])
+def classification_api_tag():
+    uploaded_file = request.files.get('uploaded_file')
+    if uploaded_file:
+        file_data = uploaded_file[0].read()
+        class_index, class_name = uploaded_file[1]
+        class_index = int(class_index)
+
+        if (class_index == 8):
+            return { "tipoImagem": class_name }
+
+        if (class_index == 5):
+            api_url = "https://knee-medvision-85e204f5fcab.herokuapp.com/kneeRXClassifier"
+            return knee_api(api_url, file_data, class_name)
+        elif (class_index == 4):
+            api_url = "https://knee-medvision-85e204f5fcab.herokuapp.com/kneeMRIClassifier"
+            return knee_api(api_url, file_data, class_name)
+        
+        resultado = PredictDisease(file_data, class_index)
+
+        return {
+            "tipoImagem": class_name,
+            "doenca": resultado
+        }
+            
+
+
+def knee_api(api_url, file_data, class_name):
+    files = {'uploaded_file': ('image.jpg', file_data)}  
+                
+    response = requests.post(api_url, files=files)
+    
+    if response.status_code == 200:
+        resultado = response.json()
+        return {
+            "tipoImagem": class_name,
+            "doenca": resultado
+        }
+    
+    return {
+        "tipoImagem": class_name,
+        "error": "Falha ao enviar imagem para classificação"
+    }
+
+
 @main.route("/clear-session", methods=['POST'])
 def clear_session_route():
     session.clear()
