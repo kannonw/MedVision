@@ -78,8 +78,11 @@ def redirect_model():
     return redirect(url_for('main.dashboard'))
 
 
-@main.route("/classificationApp", methods=['GET','POST'])
+@main.route("/classificationApp", methods=['GET', 'POST'])
 def classification_api():
+    if request.method == 'GET':
+        return redirect(url_for('main.dashboard'))
+
     uploaded_file = request.files.get('uploaded_file')
     if uploaded_file:
         file_data = uploaded_file.read()
@@ -133,7 +136,7 @@ def classification_api():
             }
 
 
-@main.route("/classification-app-tag", methods=['GET', 'POST'])
+@main.route("/classification-app-tag", methods=['POST'])
 def classification_api_tag():
     uploaded_file = request.files.get('uploaded_file')
     class_index = request.form.get('class_index')
@@ -149,7 +152,8 @@ def classification_api_tag():
         if (class_index == 5):
             api_url = "https://knee-medvision-85e204f5fcab.herokuapp.com/kneeRXClassifier"
             return knee_api(api_url, file_data, class_name)
-        elif (class_index == 4):
+        
+        if (class_index == 4):
             api_url = "https://knee-medvision-85e204f5fcab.herokuapp.com/kneeMRIClassifier"
             return knee_api(api_url, file_data, class_name)
         
