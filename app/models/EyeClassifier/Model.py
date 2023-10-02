@@ -11,7 +11,7 @@ class EyeClassifier(nn.Module):
   def __init__(self):
     super().__init__()
 
-    self.class_names = ['BDRNPDR', 'CNV', 'CRVO', 'No-Findings']
+    self.class_names = ['Antecedentes da Retinopatia Diabética', 'Neovascularização Coroidal', 'Oclusão da veia central da retina', 'Normal']
 
     self.conv1 = nn.Conv2d(in_channels=3, out_channels=64, kernel_size=(3,3)) 
     self.conv2 = nn.Conv2d(64, 64, (3,3))

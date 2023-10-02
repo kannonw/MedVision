@@ -11,7 +11,7 @@ class BrainTumorClassifier(nn.Module):
     def __init__(self):
         super().__init__()
 
-        self.class_names = ["Glioma", "Meningioma", "No-Tumor", "Pituitary"]
+        self.class_names = ["Glioma", "Meningioma", "Normal", "Hipófise"]
 
         self.transform = transforms.Compose([
             transforms.Resize([224, 224]),
