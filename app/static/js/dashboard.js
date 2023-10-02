@@ -13,11 +13,15 @@ $(document).ready(function() {
     $('.modal-close-btn').on('click', function() {
         $('#file-form')[0].reset()
         $('.modal').hide();
-    });    
+    });   
 
     $('.modal-confirm-btn').on('click', function() {
         $('#file-form')[0].reset()
         $('.modal').hide();      
+    });
+
+    $('.redirect-to-model').on('click', function() {
+        document.getElementById('Loading').style.display = 'block';
     });
 
     $('.models-switch').on('click', function() {

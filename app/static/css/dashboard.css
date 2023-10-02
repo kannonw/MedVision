@@ -102,6 +102,12 @@ form input[type=submit]:hover {
     transition: .2s ease-in-out;
 }
 
+#Loading {
+    display: none;
+    width: 4rem;
+    margin: 4rem auto;
+}
+
 /* ########## END IMAGE SUBMIT FORM ########## */
 
 

@@ -4,7 +4,6 @@ from .models import PredictImageType, PredictDisease
 from base64 import b64encode
 from .forms import ImageForm
 
-
 main = Blueprint('main', __name__)
 
 
