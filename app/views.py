@@ -87,8 +87,8 @@ def classification_api():
     if uploaded_file:
         file_data = uploaded_file.read()
         class_name, class_index = PredictImageType(file_data)
-        if (class_name != 'Non medical image'):
-            if (class_name == "Knee XR"):
+        if (class_index != 8):
+            if (class_index == 5):
                 api_url = "https://knee-medvision-85e204f5fcab.herokuapp.com/kneeRXClassifier"
                 
                 files = {'uploaded_file': ('image.jpg', file_data)}  
@@ -106,7 +106,7 @@ def classification_api():
                         "tipoImagem": class_name,
                         "error": "Falha ao enviar imagem para classificação"
                     }
-            elif (class_name == "Knee MRI"):
+            elif (class_index == 4):
                 api_url = "https://knee-medvision-85e204f5fcab.herokuapp.com/kneeMRIClassifier"
                 
                 files = {'uploaded_file': ('image.jpg', file_data)}  
