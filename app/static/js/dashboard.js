@@ -31,6 +31,8 @@ $(document).ready(function() {
     $('#file-form').submit(function (e) {
         var form_data = new FormData($('#file-form')[0]);
 
+        document.getElementById('Loading').style.display = 'block';
+
         $.ajax({
             type: "POST",
             url: "/process-data",
@@ -40,6 +42,8 @@ $(document).ready(function() {
             cache: false,
             timeout: 10000,
             success: function (data) {
+                document.getElementById('Loading').style.display = 'none';
+                
                 if (data.index == '8' || data.index == '6' || data.index == '2' || data.index == '0') {
                     showErrorModal(data.image);
                 } else {
