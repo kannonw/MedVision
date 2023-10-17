@@ -61,10 +61,7 @@ header {
 }
 
 .logo {
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
-    user-select: none; 
-
+    text-decoration: none;
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -72,6 +69,12 @@ header {
 
 .logo img {
     width: 2rem;
+}
+
+.logo img, .logo h1 {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none;     
 }
 
 .actual-page {
