@@ -47,27 +47,27 @@ def redirect_model():
         session['class_index'] = int(request.form.get('index'))
 
 
-    if (session['class_index'] == 5):
-        api_url = "https://knee-medvision-85e204f5fcab.herokuapp.com/kneeRXClassifier"
+    # if (session['class_index'] == 5):
+    #     api_url = "https://knee-medvision-85e204f5fcab.herokuapp.com/kneeRXClassifier"
         
-        files = {'uploaded_file': ('image.jpg', session['image'])}  
+    #     files = {'uploaded_file': ('image.jpg', session['image'])}  
         
-        response = requests.post(api_url, files=files)
+    #     response = requests.post(api_url, files=files)
         
-        if response.status_code == 200:
-            pred_dict = response.json()
+    #     if response.status_code == 200:
+    #         pred_dict = response.json()
 
-    elif (session['class_index'] == 4):
-        api_url = "https://knee-medvision-85e204f5fcab.herokuapp.com/kneeRXClassifier"
+    # elif (session['class_index'] == 4):
+    #     api_url = "https://knee-medvision-85e204f5fcab.herokuapp.com/kneeRXClassifier"
         
-        files = {'uploaded_file': ('image.jpg', session['image'])}  
+    #     files = {'uploaded_file': ('image.jpg', session['image'])}  
         
-        response = requests.post(api_url, files=files)
+    #     response = requests.post(api_url, files=files)
         
-        if response.status_code == 200:
-            pred_dict = response.json()
-    else:
-        pred_dict = PredictDisease(session['image'], session['class_index'])
+    #     if response.status_code == 200:
+    #         pred_dict = response.json()
+    # else:
+    pred_dict = PredictDisease(session['image'], session['class_index'])
 
     flash(b64encode(session['image']).decode('utf-8'))
     flash(pred_dict)
@@ -87,48 +87,48 @@ def classification_api():
         file_data = uploaded_file.read()
         class_name, class_index = PredictImageType(file_data)
         if (class_index != 8):
-            if (class_index == 5):
-                api_url = "https://knee-medvision-85e204f5fcab.herokuapp.com/kneeRXClassifier"
+            # if (class_index == 5):
+            #     api_url = "https://knee-medvision-85e204f5fcab.herokuapp.com/kneeRXClassifier"
                 
-                files = {'uploaded_file': ('image.jpg', file_data)}  
+            #     files = {'uploaded_file': ('image.jpg', file_data)}  
                 
-                response = requests.post(api_url, files=files)
+            #     response = requests.post(api_url, files=files)
                 
-                if response.status_code == 200:
-                    resultado = response.json()
-                    return {
-                        "tipoImagem": class_name,
-                        "doenca": resultado
-                    }
-                else:
-                    return {
-                        "tipoImagem": class_name,
-                        "error": "Falha ao enviar imagem para classificação"
-                    }
-            elif (class_index == 4):
-                api_url = "https://knee-medvision-85e204f5fcab.herokuapp.com/kneeMRIClassifier"
+            #     if response.status_code == 200:
+            #         resultado = response.json()
+            #         return {
+            #             "tipoImagem": class_name,
+            #             "doenca": resultado
+            #         }
+            #     else:
+            #         return {
+            #             "tipoImagem": class_name,
+            #             "error": "Falha ao enviar imagem para classificação"
+            #         }
+            # elif (class_index == 4):
+            #     api_url = "https://knee-medvision-85e204f5fcab.herokuapp.com/kneeMRIClassifier"
                 
-                files = {'uploaded_file': ('image.jpg', file_data)}  
+            #     files = {'uploaded_file': ('image.jpg', file_data)}  
                 
-                response = requests.post(api_url, files=files)
+            #     response = requests.post(api_url, files=files)
                 
-                if response.status_code == 200:
-                    resultado = response.json()
-                    return {
-                        "tipoImagem": class_name,
-                        "doenca": resultado
-                    }
-                else:
-                    return {
-                        "tipoImagem": class_name,
-                        "error": "Falha ao enviar imagem para classificação"
-                    }
-            else:
-                resultado = PredictDisease(file_data, class_index)
-                return {
-                    "tipoImagem": class_name,
-                    "doenca": resultado
-                }
+            #     if response.status_code == 200:
+            #         resultado = response.json()
+            #         return {
+            #             "tipoImagem": class_name,
+            #             "doenca": resultado
+            #         }
+            #     else:
+            #         return {
+            #             "tipoImagem": class_name,
+            #             "error": "Falha ao enviar imagem para classificação"
+            #         }
+            # else:
+            resultado = PredictDisease(file_data, class_index)
+            return {
+                "tipoImagem": class_name,
+                "doenca": resultado
+            }
         else:
             return {
                 "tipoImagem": class_name,
@@ -148,13 +148,13 @@ def classification_api_tag():
         if (class_index == 8):
             return { "tipoImagem": class_name }
 
-        if (class_index == 5):
-            api_url = "https://knee-medvision-85e204f5fcab.herokuapp.com/kneeRXClassifier"
-            return knee_api(api_url, file_data, class_name)
+        # if (class_index == 5):
+        #     api_url = "https://knee-medvision-85e204f5fcab.herokuapp.com/kneeRXClassifier"
+        #     return knee_api(api_url, file_data, class_name)
         
-        if (class_index == 4):
-            api_url = "https://knee-medvision-85e204f5fcab.herokuapp.com/kneeMRIClassifier"
-            return knee_api(api_url, file_data, class_name)
+        # if (class_index == 4):
+        #     api_url = "https://knee-medvision-85e204f5fcab.herokuapp.com/kneeMRIClassifier"
+        #     return knee_api(api_url, file_data, class_name)
         
         resultado = PredictDisease(file_data, class_index)
 

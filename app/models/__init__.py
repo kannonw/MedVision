@@ -1,7 +1,8 @@
 from .UniversalClassifier.Model import UniversalClassifier
 from .BrainTumorClassifier.Model import BrainTumorClassifier
 from .ChestXRayClassifier.Model import ChestXRayClassifier
-# from .KneeXRayClassifier.Model import KneeXRayClassifier
+from .KneeXRayClassifier.Model import KneeXRayClassifier
+from .KneeMRIClassifier.Model import KneeMRIClassifier
 # from .LiverClassifier.Model import LiverClassifier
 from .EyeClassifier.Model import EyeClassifier
 
@@ -18,10 +19,9 @@ brainMRIModel.load_weights()
 chestXRModel = ChestXRayClassifier().eval()
 chestXRModel.load_weights()
 
-# kneeXRModel = KneeXRayClassifier()
+kneeXRModel = KneeXRayClassifier()
 
-# liverMRIModel = LiverClassifier().eval()
-# liverMRIModel.load_weights()
+kneeMRIModel = KneeMRIClassifier()
 
 eyeModel = EyeClassifier().eval()
 eyeModel.load_weights()
@@ -59,10 +59,10 @@ def PredictDisease(img, index):
     #     return ModelLogic(model=chestCTModel, img=img)
     elif index == 3:
         return ModelLogic(model=chestXRModel, img=img)
-    # elif index == 4:
-    #     return ModelLogic(model=kneeMRIModel, img=img)
-    # elif index == 5:
-    #     return BinaryModelLogic(model=kneeXRModel, img=img)
+    elif index == 4:
+        return BinaryModelLogic(model=kneeMRIModel, img=img)
+    elif index == 5:
+        return BinaryModelLogic(model=kneeXRModel, img=img)
     # elif index == 6:
         # return ModelLogic(model=liverMRIModel, img=img)
     elif index == 7:
@@ -82,14 +82,14 @@ def ModelLogic(model, img):
     return dic
 
 
-# def BinaryModelLogic(model, img):
-#     pred = model.forward(img)
+def BinaryModelLogic(model, img):
+    pred = model.forward(img)
 
-#     pred = pred[0][0] * 100
-#     pred_array = np.array([[1, pred], [0, 100 - pred]])
-#     sorted_pred_array = pred_array[pred_array[:, 1].argsort()][::-1]
+    pred = pred[0][0] * 100
+    pred_array = np.array([[1, pred], [0, 100 - pred]])
+    sorted_pred_array = pred_array[pred_array[:, 1].argsort()][::-1]
     
 
     dic = {str(i):[model.class_names[int(x)], f'{y:.2f}'] for i, (x, y) in enumerate(sorted_pred_array.tolist())}
 
-#     return dic
+    return dic
